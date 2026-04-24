@@ -134,12 +134,12 @@ export default function Page() {
                   delay={BLUR_FADE_DELAY * 9.5 + index * 0.05}
                 >
                   <ProjectCard
-                    href={certification.links?.[0]?.href}
+                    href={(certification.links as readonly any[])?.[0]?.href}
                     title={certification.title}
                     description={certification.description}
-                    tags={certification.technologies}
+                    tags={certification.technologies as readonly string[]}
                     image={certification.image}
-                    links={certification.links}
+                    links={certification.links as readonly any[]}
                   />
                 </BlurFade>
               ))}
