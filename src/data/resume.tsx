@@ -6,7 +6,7 @@ export const DATA = {
   initials: "EA",
   url: "https://ebraamashraf.dev",
   location: "Cairo, Egypt",
-  resumeLink: "https://drive.google.com/file/d/1-tSbF13Wrme2S-niNb0BqPezXqyNySpz/view?usp=drive_link",
+  resumeLink: "https://drive.google.com/file/d/1M3jUxuJacfrJSzfKa9K3eYseHiqaOaf6/view?usp=drive_link",
   description: "Computer Engineering Student",
   summary:
     "As a sophomore in Computer Engineering at Cairo University, I bring a strong programming background, a passion for mathematics, and expertise in web development and embedded systems. I thrive on hands-on experience and possess a knack for swiftly learning and applying new skills with precision and innovation. I actively contribute to open source in scientific Python and data tooling ecosystems.",
@@ -68,7 +68,7 @@ export const DATA = {
       },
       Resume: {
         name: "View Resume",
-        url: "https://drive.google.com/file/d/1-tSbF13Wrme2S-niNb0BqPezXqyNySpz/view?usp=drive_link",
+        url: "https://drive.google.com/file/d/1M3jUxuJacfrJSzfKa9K3eYseHiqaOaf6/view?usp=drive_link",
         icon: Icons.resume,
         navbar: true,
       },
