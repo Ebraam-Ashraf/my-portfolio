@@ -7,7 +7,7 @@ import Link from "next/link";
 import React from "react";
 import Markdown from "react-markdown";
 
-interface ResearchCardProps {
+interface OpenSourceCardProps {
   logoUrl: string;
   altText: string;
   projectTitle: string;
@@ -18,7 +18,7 @@ interface ResearchCardProps {
   description?: string;
 }
 
-export const ResearchCard = ({
+export const OpenSourceCard = ({
   logoUrl,
   altText,
   projectTitle,
@@ -27,7 +27,7 @@ export const ResearchCard = ({
   keywords,
   period,
   description,
-}: ResearchCardProps) => {
+}: OpenSourceCardProps) => {
   return (
     <Link href={href || "#"} className="block">
       <Card className="flex">

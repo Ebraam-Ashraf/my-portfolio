@@ -1,9 +1,9 @@
-import { HackathonCard } from "@/components/hackathon-card";
+import { AwardCard } from "@/components/award-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
-import { ResearchCard } from "@/components/research-card";
+import { OpenSourceCard } from "@/components/open-source-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
@@ -23,7 +23,7 @@ export default function Page() {
             <div className="flex-col flex flex-1 space-y-1.5">
               <BlurFadeText
                 delay={BLUR_FADE_DELAY}
-                className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
+                className="text-3xl font-bold tracking-normal sm:text-5xl xl:text-6xl/none"
                 yOffset={8}
                 text={DATA.name}
               />
@@ -32,21 +32,21 @@ export default function Page() {
                 delay={BLUR_FADE_DELAY * 2}
                 text={DATA.description}
               />
-              <div className="flex gap-3 mt-4 flex-wrap">
+              <div className="flex gap-3 mt-8 flex-wrap">
                 <Link href={DATA.resumeLink} passHref>
-                  <button className="flex items-center whitespace-nowrap px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+                  <button className="flex items-center whitespace-nowrap px-8 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
                     My Resume
                   </button>
                 </Link>
                 <Link href="#contact" passHref>
-                  <button className="flex items-center whitespace-nowrap px-4 py-2 text-white bg-red-500 rounded hover:bg-orange-600">
+                  <button className="flex items-center whitespace-nowrap px-8 py-2 text-white bg-red-500 rounded hover:bg-orange-600">
                     Contact Me
                   </button>
                 </Link>
               </div>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
-              <Avatar className="size-35 border">
+              <Avatar className="size-30 border">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
                 <AvatarFallback>{DATA.initials}</AvatarFallback>
               </Avatar>
@@ -127,41 +127,41 @@ export default function Page() {
               <h2 className="text-2xl font-bold">Courses &amp; Certifications</h2>
             </BlurFade>
             <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
-              {DATA.certifications.map((certification, index) => (
-                <BlurFade
-                  key={certification.title + certification.dates}
-                  delay={BLUR_FADE_DELAY * 9.5 + index * 0.05}
-                >
-                  <ProjectCard
-                    href={(certification.links as readonly any[])?.[0]?.href}
-                    title={certification.title}
-                    description={certification.description}
-                    tags={certification.technologies as readonly string[]}
-                    image={certification.image}
-                    links={certification.links as readonly any[]}
-                  />
-                </BlurFade>
-              ))}
-            </div>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
+                {DATA.certifications.map((certification, index) => (
+                  <BlurFade
+                    key={certification.title + certification.dates}
+                    delay={BLUR_FADE_DELAY * 9.5 + index * 0.05}
+                  >
+                    <ProjectCard
+                      href={(certification.links as readonly any[])?.[0]?.href}
+                      title={certification.title}
+                      description={certification.description}
+                      tags={certification.technologies as readonly string[]}
+                      image={certification.image}
+                      links={certification.links as readonly any[]}
+                    />
+                  </BlurFade>
+                ))}
+              </div>
             </BlurFade>
           </div>
         </section>
       )}
 
       {/* ── OPEN SOURCE CONTRIBUTIONS ── */}
-      {DATA.research.length > 0 && (
-        <section id="research">
+      {DATA.openSourceContributions.length > 0 && (
+        <section id="open-source-contributions">
           <div className="flex min-h-0 flex-col gap-y-3">
             <BlurFade delay={BLUR_FADE_DELAY * 10}>
               <h2 className="text-2xl font-bold">Open Source Contributions</h2>
             </BlurFade>
-            {DATA.research.map((contribution, index) => (
+            {DATA.openSourceContributions.map((contribution, index) => (
               <BlurFade
                 key={contribution.projectTitle}
                 delay={BLUR_FADE_DELAY * 11 + index * 0.05}
               >
-                <ResearchCard
+                <OpenSourceCard
                   logoUrl={contribution.logoUrl}
                   altText={contribution.altText}
                   projectTitle={contribution.projectTitle}
@@ -177,15 +177,45 @@ export default function Page() {
         </section>
       )}
 
+      {/* ── AWARDS ── */}
+      {DATA.awards.length > 0 && (
+        <section id="awards">
+          <div className="space-y-6 w-full py-4">
+            <BlurFade delay={BLUR_FADE_DELAY * 12}>
+              <h2 className="text-2xl font-bold">Awards &amp; Competitions</h2>
+            </BlurFade>
+            <BlurFade delay={BLUR_FADE_DELAY * 13}>
+              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
+                {DATA.awards.map((award, index) => (
+                  <BlurFade
+                    key={award.title + award.dates}
+                    delay={BLUR_FADE_DELAY * 14 + index * 0.05}
+                  >
+                    <AwardCard
+                      title={award.title}
+                      description={award.description}
+                      location={award.location}
+                      dates={award.dates}
+                      image={award.image}
+                      links={award.links}
+                    />
+                  </BlurFade>
+                ))}
+              </ul>
+            </BlurFade>
+          </div>
+        </section>
+      )}
+
       {/* ── SKILLS ── */}
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 12}>
+          <BlurFade delay={BLUR_FADE_DELAY * 15}>
             <h2 className="text-2xl font-bold">Skills</h2>
           </BlurFade>
           <div className="flex flex-wrap gap-1">
             {DATA.skills.map((skill, index) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 13 + index * 0.05}>
+              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 16 + index * 0.05}>
                 <Badge>{skill}</Badge>
               </BlurFade>
             ))}
@@ -196,18 +226,18 @@ export default function Page() {
       {/* ── PROJECTS ── */}
       <section id="projects">
         <div className="space-y-6 w-full py-4">
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
+          <BlurFade delay={BLUR_FADE_DELAY * 17}>
             <div className="space-y-2 text-center">
-                <h3 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Check out my latest work
-                </h3>
+              <h3 className="text-3xl font-bold tracking-tighter sm:text-5xl">
+                Check out my latest work
+              </h3>
             </div>
           </BlurFade>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
             {DATA.projects.map((project, index) => (
               <BlurFade
                 key={project.title}
-                delay={BLUR_FADE_DELAY * 15 + index * 0.05}
+                delay={BLUR_FADE_DELAY * 18 + index * 0.05}
               >
                 <ProjectCard
                   href={project.href}
@@ -223,36 +253,6 @@ export default function Page() {
           </div>
         </div>
       </section>
-
-      {/* ── AWARDS ── */}
-      {DATA.hackathons.length > 0 && (
-        <section id="hackathons">
-          <div className="space-y-6 w-full py-4">
-            <BlurFade delay={BLUR_FADE_DELAY * 16}>
-              <h2 className="text-2xl font-bold">Awards &amp; Competitions</h2>
-            </BlurFade>
-            <BlurFade delay={BLUR_FADE_DELAY * 17}>
-              <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-                {DATA.hackathons.map((award, index) => (
-                  <BlurFade
-                    key={award.title + award.dates}
-                    delay={BLUR_FADE_DELAY * 18 + index * 0.05}
-                  >
-                    <HackathonCard
-                      title={award.title}
-                      description={award.description}
-                      location={award.location}
-                      dates={award.dates}
-                      image={award.image}
-                      links={award.links}
-                    />
-                  </BlurFade>
-                ))}
-              </ul>
-            </BlurFade>
-          </div>
-        </section>
-      )}
 
       {/* ── CONTACT ── */}
       <section id="contact">
